@@ -14,12 +14,12 @@ import org.apache.hadoop.io.*;
 
 public class GeocodeMapper extends Mapper<LongWritable, Text, Text, GeocodeWritable> {
 
-    private final static double[] PHL_COORDS = {39.88, -75.25};
-    private final static double[] HOU_COORDS = {29.97, -95.35};
-    private final static double[] SEA_COORDS = {47.45, -122.30};
-    private final static double[] GDL_COORDS = {20.66, -103.39};
-    private final static double[] MTY_COORDS = {25.67, -100.31};
-    private final static double[][] ALL_COORDS = {PHL_COORDS, HOU_COORDS, SEA_COORDS, GDL_COORDS, MTY_COORDS};
+    private final static double[] PHILADELPHIA = {39.88, -75.25};
+    private final static double[] HOUSTON = {29.97, -95.35};
+    private final static double[] SEATTLE = {47.45, -122.30};
+    private final static double[] GUADALAJARA = {20.66, -103.39};
+    private final static double[] MONTERREY = {25.67, -100.31};
+    private final static double[][] COORDINATES = {PHILADELPHIA, HOUSTON, SEATTLE, GUADALAJARA, MONTERREY};
 
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         if (value == null) return;
@@ -44,11 +44,10 @@ public class GeocodeMapper extends Mapper<LongWritable, Text, Text, GeocodeWrita
     }
 
     private static boolean isCloseToCity(Geocode g) {
-        for (int i = 0; i < ALL_COORDS.length; i++) {
-            double latitude = ALL_COORDS[i][0];
-            double longitude = ALL_COORDS[i][1];
-            double distInMeters = g.getHaversineDistance(latitude, longitude);
-            if(distInMeters <= 5000)
+        for (int i = 0; i < COORDINATES.length; i++) {
+            double latitude = COORDINATES[i][0];
+            double longitude = COORDINATES[i][1];
+            if(g.getHaversineDistance(latitude, longitude) <= 5000)
                 return true;
         }
         return false;

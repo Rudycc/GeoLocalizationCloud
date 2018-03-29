@@ -4,6 +4,7 @@
   "description": "",
   "main": "visualizer.js",
   "scripts": {
+    "start": "nodemon visualizer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

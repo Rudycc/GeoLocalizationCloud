@@ -1,0 +1,1 @@
+mvn clean && mvn compile && mvn package && java -jar target/ASN_LP2-1.0-SNAPSHOT.jar

@@ -9,7 +9,7 @@ var geoData;
 // in the file, which we then remember in the 'geoData' variable. Error 34
 // is 'file not found'.
 
-fs.readFile('./part-r-00000', 'utf8', function (err,data) {
+fs.readFile('../results/part-r-00000', 'utf8', function (err,data) {
   if (err) {
     if (err.errno == 34) {
       console.log("Cannot find the file 'part-r-00000' - did you copy it from ");
@@ -62,7 +62,7 @@ app.get('/getGeoData', function(req, res) {
 // cache (we don't want to take points from you for someone else's bugs...)
 
 app.get('/author', function(req, res) {
-  var body = "Solution by: Your Name here (yourseaslogin)";
+  var body = "Solution by: Rodolfo Carrillo Cuevas";
   res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Content-Length', body.length);
   res.end(body);

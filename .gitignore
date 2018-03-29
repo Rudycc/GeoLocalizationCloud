@@ -1,2 +1,5 @@
 datasets
 .DS_Store
+target
+node_modules
+results
